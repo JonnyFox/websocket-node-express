@@ -1,0 +1,32 @@
+{
+  "name": "websocket-node-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "copy-deps": "copy-newer --cwd node_modules ** ./dist/node_modules",
+    "start": "node ../dist/server/server.js",
+    "preserve": "npm run build",
+    "s": "npm run serve",
+    "serve": "concurrently \"npm run build.w\" \"nodemon --watch ./dist/server ./dist/server/server.js\"",
+    "lint": "tslint \"src/**/*.ts\"",
+    "prebuild": "npm install",
+    "b": "npm run build.w",
+    "build": "npm run copy-deps && tsc",
+    "build.w": "npm run copy-deps && tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "ws": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.0.35",
+    "@types/ws": "0.0.41",
+    "copy-newer": "^2.1.2",
+    "rimraf": "^2.6.1",
+    "typescript": "^2.3.2"
+  }
+}
