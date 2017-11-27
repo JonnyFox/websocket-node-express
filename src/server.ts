@@ -14,12 +14,14 @@ interface ExtWebSocket extends WebSocket {
     isAlive: boolean;
 }
 
-wss.on('connection', (ws: ExtWebSocket) => {
+wss.on('connection', (ws: WebSocket) => {
 
-    ws.isAlive = true;
+    const extWs = ws as ExtWebSocket;
+
+    extWs.isAlive = true;
 
     ws.on('pong', () => {
-        ws.isAlive = true;
+        extWs.isAlive = true;
     });
 
     //connection is up, let's add a simple simple event
@@ -51,12 +53,14 @@ wss.on('connection', (ws: ExtWebSocket) => {
 });
 
 setInterval(() => {
-    wss.clients.forEach((ws: ExtWebSocket) => {
+    wss.clients.forEach((ws: WebSocket) => {
         
-        if (!ws.isAlive) return ws.terminate();
+        const extWs = ws as ExtWebSocket;
+
+        if (!extWs.isAlive) return ws.terminate();
         
-        ws.isAlive = false;
-        ws.ping(null, false, true);
+        extWs.isAlive = false;
+        ws.ping(null, undefined, true);
     });
 }, 10000);
 
