@@ -1,0 +1,6 @@
+fdsfdsfd
+<input type="text" #inputMsg/>
+<button (click)="send(inputMsg.value)">Send</button>
+<ul>
+  <li *ngFor="let msg of serverMessages">{{ msg }}</li>
+</ul>

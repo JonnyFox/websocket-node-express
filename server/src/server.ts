@@ -10,8 +10,12 @@ const server = http.createServer(app);
 //initialize the WebSocket server instance
 const wss = new WebSocket.Server({ server });
 
-interface ExtWebSocket extends WebSocket { 
+interface ExtWebSocket extends WebSocket {
     isAlive: boolean;
+}
+
+function createMessage(message: string): string {
+    return JSON.stringify({ msg: message });
 }
 
 wss.on('connection', (ws: WebSocket) => {
@@ -25,40 +29,41 @@ wss.on('connection', (ws: WebSocket) => {
     });
 
     //connection is up, let's add a simple simple event
-    ws.on('message', (message: string) => {
+    ws.on('message', (msgString: string) => {
 
+        const message = JSON.parse(msgString);
         //log the received message and send it back to the client
-        console.log('received: %s', message);
+        console.log(message);
 
         const broadcastRegex = /^broadcast\:/;
 
-        if (broadcastRegex.test(message)) {
-            message = message.replace(broadcastRegex, '');
+        if (broadcastRegex.test(message.msg)) {
+            message.msg = message.msg.replace(broadcastRegex, '');
 
             //send back the message to the other clients
             wss.clients
                 .forEach(client => {
                     if (client != ws) {
-                        client.send(`Hello, broadcast message -> ${message}`);
-                    }    
+                        client.send(createMessage(`Hello, broadcast message -> ${message.msg}`));
+                    }
                 });
-            
+
         } else {
-            ws.send(`Hello, you sent -> ${message}`);
+            ws.send(createMessage(`Hello, you sent -> ${message.msg}`));
         }
     });
 
     //send immediatly a feedback to the incoming connection    
-    ws.send('Hi there, I am a WebSocket server');
+    ws.send(createMessage('Hi there, I am a WebSocket server'));
 });
 
 setInterval(() => {
     wss.clients.forEach((ws: WebSocket) => {
-        
+
         const extWs = ws as ExtWebSocket;
 
         if (!extWs.isAlive) return ws.terminate();
-        
+
         extWs.isAlive = false;
         ws.ping(null, undefined, true);
     });
