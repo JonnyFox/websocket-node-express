@@ -27,6 +27,7 @@
     "@types/ws": "^3.2.1",
     "concurrently": "^3.5.1",
     "copy-newer": "^2.1.2",
+    "nodemon": "^1.14.3",
     "rimraf": "^2.6.2",
     "typescript": "^2.6.2"
   }

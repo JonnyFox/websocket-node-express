@@ -14,6 +14,16 @@
             "outFiles": [
                 "${workspaceRoot}/server/dist/server/**/*.js"
             ]
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach (Inspector Protocol)",
+            "port": 8999,
+            "protocol": "inspector",
+            "restart": true,
+            "cwd": "${workspaceRoot}/server/src",
+            "sourceMaps": true,
         }
     ]
 }
