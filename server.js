@@ -62,7 +62,7 @@ setInterval(() => {
     });
 }, 10000);
 //start our server
-server.listen(process.env.PORT || 8989, () => {
+server.listen(process.env.PORT || 8999, () => {
     console.log(`Server started on port ${server.address().port} :)`);
 });
 //# sourceMappingURL=server.js.map
