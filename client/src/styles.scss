@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+$accent-color: #ff4081;
+$focused-color: $accent-color;
+$background-color: #333;
+$color: #eee;
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body,
+html,
+app-root {
+  font-family: 'Roboto', sans-serif;
+  background-color: $background-color;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: $color;
+}
+
+.mat-focused {
+  & .mat-form-field-label {
+    color: $focused-color;
+  }
+  & .mat-input-ripple{
+      background-color: $focused-color;
+  }
+}

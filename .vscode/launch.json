@@ -8,12 +8,22 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}\\dist\\server\\server.js",
-            "cwd": "${workspaceRoot}\\src",
+            "program": "${workspaceRoot}/server/dist/server/server.js",
+            "cwd": "${workspaceRoot}/server/src",
             "sourceMaps": true,
             "outFiles": [
-                "${workspaceRoot}/dist/server/**/*.js"
+                "${workspaceRoot}/server/dist/server/**/*.js"
             ]
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach (Inspector Protocol)",
+            "port": 8999,
+            "protocol": "inspector",
+            "restart": true,
+            "cwd": "${workspaceRoot}/server/src",
+            "sourceMaps": true,
         }
     ]
 }

@@ -1,0 +1,91 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.container {
+  display: flex;
+  justify-self: center;
+  width: 40%;
+  background-color: green;
+  flex-flow: column;
+}
+
+.header,
+.footer {
+  background-color: #555;
+  padding: 1rem;
+  display: flex;
+  justify-self: center;
+  line-height: 2rem;
+  border-bottom: 1px solid #444;
+  & mat-form-field {
+    flex: 1;
+    margin-left: .5rem;
+    font-size: 1rem;
+  }
+  form {
+    display: flex;
+    width: 100%;
+    & mat-form-field {
+      flex: 1;
+    }
+  }
+  mat-icon {
+    line-height: 3.5rem;
+    font-size: 2rem;
+    margin-left: 2rem;
+  }
+  button {
+    &.disabled {
+      background-color: #666;
+    }
+    margin-left: 2rem;
+  }
+}
+
+.body {
+  min-height: 30rem;
+  max-height: 50rem;
+  background-color: #454545;
+  display: flex;
+  flex-flow: column;
+  overflow-y: auto;
+  & .viewer {
+    display: flex;
+    flex-direction: column;
+    flex: none;
+    & .message {
+      width: 60%;
+      display: flex;
+      flex-flow: row;
+      margin: .5rem;
+      & .content {
+        padding: .75rem;
+        min-height: 2rem;
+        margin-left: .5rem;
+        margin-right: .5rem;
+        line-height: 2rem;
+        background-color: rgb(121, 69, 128);
+        display: flex;
+        flex: 1; //   &.others {
+        //     align-self: flex-end;
+        //     background-color: rgb(69, 128, 103);
+        //   }
+      }
+      &.others {
+        & .content {
+          align-self: flex-end;
+          background-color: rgb(69, 128, 103);
+        }
+        flex-direction: row-reverse;
+        align-self: flex-end;
+      }
+      & .badge {
+        border-radius: 50%;
+        background-color: #888;
+        width: 3.5rem;
+        height: 3.5rem;
+        text-align: center;
+        line-height: 3.5rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
