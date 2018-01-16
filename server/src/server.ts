@@ -54,7 +54,7 @@ wss.on('connection', (ws: WebSocket) => {
 
             }
 
-            ws.send(createMessage(`You sent ${message.isBroadcast ? 'in broadcast' : ''} -> ${message.content}`));
+            ws.send(createMessage(`You sent -> ${message.content}`, message.isBroadcast));
 
         }, 1000);
 
@@ -76,7 +76,7 @@ setInterval(() => {
         if (!extWs.isAlive) return ws.terminate();
 
         extWs.isAlive = false;
-        ws.ping(null, undefined, true);
+        ws.ping(null, undefined);
     });
 }, 10000);
 
