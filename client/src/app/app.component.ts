@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
+import { environment } from '../environments/environment';
 
 export class Message {
     constructor(
@@ -28,7 +29,7 @@ export class AppComponent implements AfterViewInit {
     private socket$: WebSocketSubject<Message>;
 
     constructor() {
-        this.socket$ = WebSocketSubject.create('ws://localhost:8999');
+        this.socket$ = WebSocketSubject.create(environment.serverSocket);
 
         this.socket$
             .subscribe(

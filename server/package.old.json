@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "copy-deps": "copy-newer --cwd node_modules ** ../dist/node_modules",
+    "copy-deps": "copy-newer --cwd node_modules ** ./dist/node_modules",
     "start": "node dist/server/server.js",
     "preserve": "npm run build",
     "s": "npm run serve",
-    "serve": "concurrently \"npm run build.w\" \"nodemon --watch ../dist/server ../dist/server/server.js\"",
+    "serve": "concurrently \"npm run build.w\" \"nodemon --watch ./dist/server ./dist/server/server.js\"",
     "lint": "tslint \"src/**/*.ts\"",
     "prebuild": "npm install",
     "b": "npm run build.w",
@@ -20,7 +20,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
-    "ws": "^4.0.0",
+    "ws": "^4.0.0"
+  },
+  "devDependencies": {
     "@types/express": "^4.11.0",
     "@types/ws": "^4.0.0",
     "concurrently": "^3.5.1",

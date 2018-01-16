@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  serverSocket: 'https://angular-websocket.herokuapp.com:8999'
 };

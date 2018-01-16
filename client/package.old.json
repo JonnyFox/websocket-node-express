@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "publish": "ng build --prod --aot --output-path ../dist"
+    "publish": "ng build --prod --aot"
   },
   "private": true,
   "dependencies": {
@@ -26,7 +26,9 @@
     "@angular/router": "^5.1.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19",
+    "zone.js": "^0.8.19"
+  },
+  "devDependencies": {
     "@angular/cli": "1.6.4",
     "@angular/compiler-cli": "^5.1.0",
     "@angular/language-service": "^5.1.0",
