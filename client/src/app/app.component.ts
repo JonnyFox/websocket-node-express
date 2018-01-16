@@ -32,14 +32,14 @@ export class AppComponent implements AfterViewInit {
 
         this.socket$
             .subscribe(
-            (message) => this.serverMessages.push(message) && this.scrollToBottom(),
+            (message) => this.serverMessages.push(message) && this.scroll(),
             (err) => console.error(err),
             () => console.warn('Completed!')
             );
     }
 
     ngAfterViewInit(): void {
-        this.scrollToBottom();
+        this.scroll();
     }
 
     public toggleIsBroadcast(): void {
@@ -52,7 +52,7 @@ export class AppComponent implements AfterViewInit {
         this.serverMessages.push(message);
         this.socket$.next(<any>JSON.stringify(message));
         this.clientMessage = '';
-        this.scrollToBottom();
+        this.scroll();
     }
 
     public isMine(message: Message): boolean {
@@ -73,6 +73,12 @@ export class AppComponent implements AfterViewInit {
     private getDiff(): number {
         const nativeElement = this.viewer.nativeElement;
         return nativeElement.scrollHeight - (nativeElement.scrollTop + nativeElement.clientHeight);
+    }
+
+    private scroll(): void {
+        setTimeout(() => {
+            this.scrollToBottom();
+        }, 100);
     }
 
     private scrollToBottom(t = 1, b = 0): void {

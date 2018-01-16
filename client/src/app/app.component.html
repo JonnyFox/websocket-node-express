@@ -7,10 +7,10 @@
   <div *ngIf="!!sender" #viewer class="body">
     <div class="viewer">
       <div class="message" *ngFor="let msg of serverMessages" [ngClass]="{'bold': msg.isBroadcast, 'others': !isMine(msg)}">
-        <div class="badge" [style.backgroundColor]="getSenderColor(msg.sender)" >{{ getSenderInitials(msg.sender) }}</div>
+        <div class="badge" [style.backgroundColor]="getSenderColor(msg.sender)">{{ getSenderInitials(msg.sender) }}</div>
         <div class="content" [ngClass]="{'bold': msg.isBroadcast, 'others': !isMine(msg)}">
-          {{ msg.content }}
           <i *ngIf="msg.isBroadcast" class="material-icons">speaker_phone</i>
+          <span>{{ msg.content }}</span>
         </div>
       </div>
     </div>

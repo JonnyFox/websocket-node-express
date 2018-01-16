@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .container {
   display: flex;
   justify-self: center;
@@ -42,7 +42,7 @@
 
 .body {
   min-height: 30rem;
-  max-height: 50rem;
+  max-height: 40rem;
   background-color: #454545;
   display: flex;
   flex-flow: column;
