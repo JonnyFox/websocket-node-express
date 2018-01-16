@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header">
     <mat-form-field>
-      <input matInput placeholder="Your name here" type="text" [(ngModel)]="sender">
+      <input matInput placeholder="Your name here" type="text" [(ngModel)]="sender" [ngModelOptions]="{updateOn: 'blur'}">
     </mat-form-field>
   </div>
   <div *ngIf="!!sender" #viewer class="body">

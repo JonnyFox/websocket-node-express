@@ -70,30 +70,28 @@ export class AppComponent implements AfterViewInit {
         return '#' + value.toString(16).padEnd(6, '0');
     }
 
-    private getDiff(): number {
-        const nativeElement = this.viewer.nativeElement;
-        return nativeElement.scrollHeight - (nativeElement.scrollTop + nativeElement.clientHeight);
-    }
-
     private scroll(): void {
         setTimeout(() => {
             this.scrollToBottom();
         }, 100);
     }
 
+    private getDiff(): number {
+        const nativeElement = this.viewer.nativeElement;
+        return nativeElement.scrollHeight - (nativeElement.scrollTop + nativeElement.clientHeight);
+    }
+
     private scrollToBottom(t = 1, b = 0): void {
-        try {
-            if (b < 1) {
-                b = this.getDiff();
-            }
-            if (b > 0 && t <= 120) {
-                setTimeout(() => {
-                    const diff = this.easeInOutSin(t / 120) * this.getDiff();
-                    this.viewer.nativeElement.scrollTop += diff;
-                    this.scrollToBottom(++t, b);
-                }, 1 / 60);
-            }
-        } catch (err) { }
+        if (b < 1) {
+            b = this.getDiff();
+        }
+        if (b > 0 && t <= 120) {
+            setTimeout(() => {
+                const diff = this.easeInOutSin(t / 120) * this.getDiff();
+                this.viewer.nativeElement.scrollTop += diff;
+                this.scrollToBottom(++t, b);
+            }, 1 / 60);
+        }
     }
 
     private easeInOutSin(t): number {
