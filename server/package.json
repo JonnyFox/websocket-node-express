@@ -27,6 +27,6 @@
     "copy-newer": "^2.1.2",
     "nodemon": "^1.14.11",
     "rimraf": "^2.6.2",
-    "typescript": "^2.6.2"
+    "typescript": "^2.7.2"
   }
 }

@@ -78,6 +78,10 @@ export class AppComponent implements AfterViewInit {
     }
 
     private getDiff(): number {
+        if (!this.viewer) {
+            return -1;
+        }
+
         const nativeElement = this.viewer.nativeElement;
         return nativeElement.scrollHeight - (nativeElement.scrollTop + nativeElement.clientHeight);
     }
