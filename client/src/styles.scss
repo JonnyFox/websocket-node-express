@@ -21,7 +21,7 @@ app-root {
   & .mat-form-field-label {
     color: $focused-color;
   }
-  & .mat-input-ripple{
+  & .mat-form-field-ripple{
       background-color: $focused-color;
   }
 }

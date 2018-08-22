@@ -1,5 +1,4 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
 
 export class Message {
@@ -28,7 +27,8 @@ export class AppComponent implements AfterViewInit {
     private socket$: WebSocketSubject<Message>;
 
     constructor() {
-        this.socket$ = WebSocketSubject.create('ws://localhost:8999');
+
+        this.socket$ = new WebSocketSubject('ws://localhost:8999');
 
         this.socket$
             .subscribe(
@@ -50,7 +50,7 @@ export class AppComponent implements AfterViewInit {
         const message = new Message(this.sender, this.clientMessage, this.isBroadcast);
 
         this.serverMessages.push(message);
-        this.socket$.next(<any>JSON.stringify(message));
+        this.socket$.next(message);
         this.clientMessage = '';
         this.scroll();
     }
@@ -63,7 +63,7 @@ export class AppComponent implements AfterViewInit {
         return sender && sender.substring(0, 2).toLocaleUpperCase();
     }
 
-    private getSenderColor(sender: string): string {
+    public getSenderColor(sender: string): string {
         const alpha = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ';
         const initials = this.getSenderInitials(sender);
         const value = Math.ceil((alpha.indexOf(initials[0]) + alpha.indexOf(initials[1])) * 255 * 255 * 255 / 70);
@@ -77,6 +77,10 @@ export class AppComponent implements AfterViewInit {
     }
 
     private getDiff(): number {
+        if (!this.viewer) {
+            return -1;
+        }
+
         const nativeElement = this.viewer.nativeElement;
         return nativeElement.scrollHeight - (nativeElement.scrollTop + nativeElement.clientHeight);
     }
